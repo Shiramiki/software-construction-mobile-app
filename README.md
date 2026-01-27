@@ -4,6 +4,7 @@ Part C: Change and Maintainability
 
 
 Which parts of the app would need changes?
+
 Introducing mobile payments in Uganda would require changes across multiple layers of the Uber system rather than in a single isolated component. At the user interface level, the payment screens would need to be updated to allow users to select local mobile money options such as MTN Mobile Money or Airtel Money. This includes modifying payment setup screens, checkout flows, and receipts to clearly show mobile money as a supported method.
 
 At the business logic level, significant changes would be required to handle new payment rules. The system would need logic to initiate mobile money payment requests, handle asynchronous payment confirmations, manage retries for failed transactions, and support partial or delayed payments. Unlike card payments, mobile money transactions often depend on user approval via USSD or SMS, which adds complexity to transaction state management.
@@ -14,6 +15,7 @@ At the data storage level, the database schema would need updates to store mobil
 
 
 What existing features could break?
+
 Several existing features could be affected or temporarily broken by the introduction of mobile payments. The payments and billing feature is the most directly impacted, as assumptions made for instant card authorization may no longer hold true for mobile money, which can be delayed or fail due to network or user interaction issues. This could lead to incorrect fare settlements if not handled carefully.
 
 Ride completion workflows could also be affected, since Uber currently assumes that payment confirmation happens quickly after a trip ends. With mobile money, there may be delays in confirmation, which could cause issues such as rides being marked as unpaid or drivers not receiving timely earnings updates.
@@ -23,6 +25,7 @@ Driver payouts may also be impacted, as Uber would need to ensure that funds col
 
 
 Why would this change be difficult to implement?
+
 This change would be difficult to implement because it cuts across many core assumptions in Uber’s existing architecture. From a technical perspective, mobile money systems are fundamentally different from traditional card payment systems. They are often asynchronous, depend on external telecom infrastructure, and can be less reliable in terms of network availability, which requires robust error handling and state management.
 
 From a maintainability standpoint, adding Uganda-specific payment logic risks introducing country-specific code paths that increase system complexity. If not carefully abstracted, this can lead to tightly coupled code that is harder to maintain and extend to other regions with similar payment needs.
