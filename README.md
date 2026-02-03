@@ -170,7 +170,41 @@ Order details and delivery logs are stored for transaction records and analytics
 
 > **Connectivity Note:** Network issues can delay order placement and tracking updates.
 
+### Feature 9: Uber Reserve (Scheduled Rides)
 
+#### User Interface (UI)
+
+The Reserve interface features a dedicated **scheduling picker** that allows users to select a date and time up to 90 days in advance. It includes a "Confirmed" tab in the activity center where users can view their upcoming scheduled trips and assigned driver details.
+
+**Proactive Status Bars:** Visual indicators show when a driver has been assigned and when they have begun their journey to the pickup point.
+    
+
+#### Business Logic
+
+Unlike "on-demand" booking, Reserve uses a **Pre-dispatch Matching Engine**.
+
+**Driver Commitment Logic:** The system sends the request to top-rated drivers first, allowing them to "claim" the ride hours or days in advance.
+    
+**Buffer Management:** The logic automatically calculates the driver's current location and trip status prior to the Reserve slot, ensuring they have at least a 40-minute "buffer" of free time before the scheduled pickup.
+    
+**Wait-Time Logic:** It enforces a different set of rules for "waiting," often providing riders with a 5–15 minute grace period included in the premium fare.
+    
+
+#### Network / APIs
+
+**Time-Triggered Jobs:** The backend uses a distributed "Cron" or "Task Scheduler" service. When the scheduled time approaches (e.g., 30 minutes prior), the system triggers a standard ride-matching API call to "activate" the trip.
+    
+**Polling & Webhooks:** The app uses long-polling or Webhooks to check the status of the "pre-match" and notify the user immediately if the assigned driver cancels or if a new one is being sought.
+    
+
+#### Data Storage
+
+ **Scheduled State Store:** Unlike active rides, these are stored in a **Persistent Relational Database (like PostgreSQL or CockroachDB)** because they must survive system restarts over long periods (days/weeks).
+    
+**Historical Audit Logs:** The system stores the "Claim History" (which drivers viewed and rejected the ride) to optimize future matching for that specific time slot and route.
+    
+
+> **Connectivity Note:** Scheduling a ride requires an initial connection. However, once a ride is "Reserved" and stored on the server, the system will attempt to dispatch a driver even if the rider's phone is temporarily offline at the time of the pickup.
 ## Part C: Change and Maintainability
 
 
@@ -259,4 +293,5 @@ From a teamwork perspective, we learned that effective collaboration is essentia
 | Mark Calvin Obba   | Focused on software change and maintainability by analyzing a change scenario and its impact on the application. |
 | Nathaniel Mugenyi | Analyzed what happens behind the scenes for Uber’s features, including the user interface, backend systems, APIs, and data handling. |
 | Isooba M Rachel   | Organized, structured, and finalized the `README.md` file on GitHub to ensure clarity, consistency, and completeness. |
+
 
