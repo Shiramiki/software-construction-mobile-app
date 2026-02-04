@@ -1,1 +1,3 @@
 
+QUESTION FIVE:
+Artificial Intelligence can support understanding code by acting as a smart assistant that explains logic, highlights patterns and helps debug errors making complex software concepts more approachable. Instead of replacing learning, it reinforces it by allowing developers to ask why code works, compare different approaches and explore best practices. In software construction and collaboration, Artificial Intelligence can improve productivity by clarifying unfamiliar codebases, generating documentation and suggesting improvements while the real learning still comes from human reasoning, design decisions, teamwork and hands-on problem-solving.
