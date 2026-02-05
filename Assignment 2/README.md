@@ -1,14 +1,17 @@
 ## QUESTION ONE: Explain the difference between programming and software construction using one real-world example
 
 **Programming as an Individual Activity**
+
 Programming is primarily an individual-focused activity where a single programmer is responsible for writing, testing and debugging a specific piece of code. The programmer works independently, concentrating on logic, syntax and correctness of the solution. Decision making is localized meaning the individual decides how to implement the solution without needing extensive coordination with others.
 
 While
 
 **Software Construction as a Team Based Activity**
+
 Software construction is a collaborative and team oriented process that involves multiple professionals working together to develop a complete software system. It goes beyond writing code to include planning, architectural design, integration, testing, documentation and maintenance. This is because no single person can efficiently handle all these responsibilities, teamwork and communication are essential.
 
 **Real world example**
+
 For example the development of a university student management system.
 
 Programming is when a developer writes a specific feature, such as a login module that checks usernames and passwords, or a function that calculates a student’s GPA. The programmer focuses on making sure that this piece of code works correctly on its own. There is no collaboration involved.
